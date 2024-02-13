@@ -353,7 +353,7 @@ def create_config():
             "betas": [0.8, 0.99],
             "eps": 1e-9,
             "batch_size": 32,
-            "fp16_run": True,
+            "fp16_run": False,
             "lr_decay": 0.999875,
             "segment_size": 8192,
             "init_lr_ratio": 1,
