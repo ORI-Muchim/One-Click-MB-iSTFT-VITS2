@@ -58,13 +58,13 @@ conda activate vits2
 3. **Clone this repository to your local machine:**
 
 ```sh
-git clone https://github.com/ORI-Muchim/One-Click-MB-iSTFT-VITS2-Traning.git
+git clone https://github.com/ORI-Muchim/One-Click-MB-iSTFT-VITS2.git
 ```
 
 4. **Navigate to the cloned directory:**
 
 ```sh
-cd One-Click-MB-iSTFT-VITS2-Traning
+cd One-Click-MB-iSTFT-VITS2
 ```
 
 5. **Install the necessary dependencies:**
@@ -132,12 +132,10 @@ python main_resume.py {model_name}
 After the model has been trained, you can generate predictions by using the following command, replacing {model_name} and {model_step} with your respective values:
 
 ```sh
-python inference.py {model_name} {model_step}
+python inference.py {model_name} {model_step} [--poly](Optional)
 ```
 
-Or check ./vits/inference.ipynb.
-
-If you want to change the example text used in the reference, modify `./vits/inferencems.py` `text` part.
+If you want to change the example text used in the reference, modify `./vits/inference.py` `input` part.
 
 ---
 
