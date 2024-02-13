@@ -136,6 +136,8 @@ python inference.py {model_name} {model_step} [--poly](Optional)
 ```
 
 If you have selected cjke_cleaners2, put `--poly` option at the back.
+
+
 If you want to change the example text used in the reference, modify `./vits/inference.py` `input` part.
 
 ---
