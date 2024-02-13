@@ -374,10 +374,6 @@ class DistributedBucketSampler(torch.utils.data.distributed.DistributedSampler):
             idx_bucket = self._bisect(length)
             if idx_bucket != -1:
                 buckets[idx_bucket].append(i)
-
-        # Remove empty buckets to avoid zero division
-        buckets = [bucket for bucket in buckets if len(bucket) > 0]
-        num_samples_per_bucket = []
   
         for i in range(len(buckets) - 1, 0, -1):
             if len(buckets[i]) == 0:
@@ -409,9 +405,8 @@ class DistributedBucketSampler(torch.utils.data.distributed.DistributedSampler):
       for i in range(len(self.buckets)):
           bucket = self.buckets[i]
           len_bucket = len(bucket)
-          if len_bucket > 0:  # Only process if bucket is not empty
-              ids_bucket = indices[i]
-              num_samples_bucket = self.num_samples_per_bucket[i]
+          ids_bucket = indices[i]
+          num_samples_bucket = self.num_samples_per_bucket[i]
   
           # add extra samples to make it evenly divisible
           rem = num_samples_bucket - len_bucket
