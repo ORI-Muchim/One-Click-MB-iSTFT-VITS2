@@ -532,25 +532,25 @@ def rename_config_json(arg2):
 
 def main():
 
-    # print("Running Audio Files Rename...")
-    # time.sleep(1.5)
-    # second_code()
-    # print("All .wav files have been renamed.\n")
+    print("Running Audio Files Rename...")
+    time.sleep(1.5)
+    second_code()
+    print("All .wav files have been renamed.\n")
 
-    # print("Running Audio Convertion(.mp3 to .wav)")
-    # time.sleep(1.5)
-    # preprocessing_code(sys.argv[3])
-    # print("All .mp3 files have been converted to .wav files.\n")
+    print("Running Audio Convertion(.mp3 to .wav)")
+    time.sleep(1.5)
+    preprocessing_code(sys.argv[3])
+    print("All .mp3 files have been converted to .wav files.\n")
 
-    # print("Running Audio Seperation...")
-    # time.sleep(1.5)
-    # first_code()
-    # print("All .wav files have been seperated.\n")
+    print("Running Audio Seperation...")
+    time.sleep(1.5)
+    first_code()
+    print("All .wav files have been seperated.\n")
 
-    # print("Running Whisper ASR...")
-    # time.sleep(0.5)
-    # third_code(sys.argv[1], sys.argv[2])
-    # print("All .wav files have been processed.\n")
+    print("Running Whisper ASR...")
+    time.sleep(0.5)
+    third_code(sys.argv[1], sys.argv[2])
+    print("All .wav files have been processed.\n")
 
     print("Running vits preprocess.py(Korean text cleaning can take some time)...")
     time.sleep(1.5)
