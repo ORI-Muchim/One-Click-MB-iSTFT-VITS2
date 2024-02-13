@@ -306,8 +306,6 @@ def third_code(arg1, arg2):
     main()
 
 
-
-
 def fourth_code():
     top_folder_path = './'
     sub_folders = [f for f in os.listdir(top_folder_path) if os.path.isdir(os.path.join(top_folder_path, f))]
@@ -346,60 +344,76 @@ def fifth_code(arg2):
 
 def create_config():
     config = {
-    "train": {
-        "log_interval": 200,
-        "eval_interval": 1000,
-        "seed": 1234,
-        "epochs": 10000,
-        "learning_rate": 2e-4,
-        "betas": [0.8, 0.99],
-        "eps": 1e-9,
-        "batch_size": 32,
-        "fp16_run": True,
-        "lr_decay": 0.999875,
-        "segment_size": 8192,
-        "init_lr_ratio": 1,
-        "warmup_epochs": 0,
-        "c_mel": 45,
-        "c_kl": 1.0
-    },
-    "data": {
-        "training_files": "",
-        "validation_files": "",
-        "text_cleaners": [],
-        "max_wav_value": 32768.0,
-        "sampling_rate": 22050,
-        "filter_length": 1024,
-        "hop_length": 256,
-        "win_length": 1024,
-        "n_mel_channels": 80,
-        "mel_fmin": 0.0,
-        "mel_fmax": None,
-        "add_blank": True,
-        "n_speakers": 6,
-        "cleaned_text": True
-    },
-    "model": {
-        "inter_channels": 192,
-        "hidden_channels": 192,
-        "filter_channels": 768,
-        "n_heads": 2,
-        "n_layers": 6,
-        "kernel_size": 3,
-        "p_dropout": 0.1,
-        "resblock": "1",
-        "resblock_kernel_sizes": [3, 7, 11],
-        "resblock_dilation_sizes": [[1, 3, 5], [1, 3, 5], [1, 3, 5]],
-        "upsample_rates": [8, 8, 2, 2],
-        "upsample_initial_channel": 512,
-        "upsample_kernel_sizes": [16, 16, 4, 4],
-        "n_layers_q": 3,
-        "use_spectral_norm": False,
-        "gin_channels": 256
-    },
-    "speakers": [],
-    "symbols": []
-}
+        "train": {
+            "log_interval": 200,
+            "eval_interval": 1000,
+            "seed": 1234,
+            "epochs": 20000,
+            "learning_rate": 2e-4,
+            "betas": [0.8, 0.99],
+            "eps": 1e-9,
+            "batch_size": 32,
+            "fp16_run": False,
+            "lr_decay": 0.999875,
+            "segment_size": 8192,
+            "init_lr_ratio": 1,
+            "warmup_epochs": 0,
+            "c_mel": 45,
+            "c_kl": 1.0,
+            "fft_sizes": [384, 683, 171],
+            "hop_sizes": [30, 60, 10],
+            "win_lengths": [150, 300, 60],
+            "window": "hann_window"
+        },
+        "data": {
+            "use_mel_posterior_encoder": True,
+            "training_files": "",
+            "validation_files": "",
+            "text_cleaners": [""],
+            "max_wav_value": 32768.0,
+            "sampling_rate": 22050,
+            "filter_length": 1024,
+            "hop_length": 256,
+            "win_length": 1024,
+            "n_mel_channels": 80,
+            "mel_fmin": 0.0,
+            "mel_fmax": None,
+            "add_blank": True,
+            "n_speakers": 0,
+            "cleaned_text": True
+        },
+        "model": {
+            "use_mel_posterior_encoder": True,
+            "use_transformer_flows": True,
+            "transformer_flow_type": "pre_conv2",
+            "use_spk_conditioned_encoder": False,
+            "use_noise_scaled_mas": True,
+            "use_duration_discriminator": True,
+            "duration_discriminator_type": "dur_disc_2",
+            "ms_istft_vits": False,
+            "mb_istft_vits": True,
+            "istft_vits": False,
+            "subbands": 4,
+            "gen_istft_n_fft": 16,
+            "gen_istft_hop_size": 4,
+            "inter_channels": 192,
+            "hidden_channels": 192,
+            "filter_channels": 768,
+            "n_heads": 2,
+            "n_layers": 6,
+            "kernel_size": 3,
+            "p_dropout": 0.1,
+            "resblock": "1",
+            "resblock_kernel_sizes": [3, 7, 11],
+            "resblock_dilation_sizes": [[1, 3, 5], [1, 3, 5], [1, 3, 5]],
+            "upsample_rates": [4, 4],
+            "upsample_initial_channel": 512,
+            "upsample_kernel_sizes": [16, 16],
+            "n_layers_q": 3,
+            "use_spectral_norm": False,
+            "use_sdp": False
+        }
+    }
 
     with open("config.json", "w", encoding="utf-8") as file:
         json.dump(config, file, ensure_ascii=False, indent=2)
@@ -433,16 +447,12 @@ def sixth_code(arg1, arg2):
 
     if arg1 == "ko":
         config["data"]["text_cleaners"] = ["korean_cleaners"]
-        config["symbols"] = ["_", ",", ".", "!", "?", "\u2026", "~", "\u3131", "\u3134", "\u3137", "\u3139", "\u3141", "\u3142", "\u3145", "\u3147", "\u3148", "\u314a", "\u314b", "\u314c", "\u314d", "\u314e", "\u3132", "\u3138", "\u3143", "\u3146", "\u3149", "\u314f", "\u3153", "\u3157", "\u315c", "\u3161", "\u3163", "\u3150", "\u3154", " "]
     elif arg1 == "ja":
         config["data"]["text_cleaners"] = ["japanese_cleaners2"]
-        config["symbols"] = ["_", ",", ".", "!", "?", "-", "~", "\u2026", "A", "E", "I", "N", "O", "Q", "U", "a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "m", "n", "o", "p", "r", "s", "t", "u", "v", "w", "y", "z", "\u0283", "\u02a7", "\u02a6", "\u2193", "\u2191", " "]
     elif arg1 == "en":
         config["data"]["text_cleaners"] = ["cjke_cleaners2"]
-        config["symbols"] = ["_", ",", ".", "!", "?", "-", "~", "\u2026", "N", "Q", "a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "s", "t", "u", "v", "w", "x", "y", "z", "\u0251", "\u00e6", "\u0283", "\u0291", "\u00e7", "\u026f", "\u026a", "\u0254", "\u025b", "\u0279", "\u00f0", "\u0259", "\u026b", "\u0265", "\u0278", "\u028a", "\u027e", "\u0292", "\u03b8", "\u03b2", "\u014b", "\u0266", "\u207c", "\u02b0", "`", "^", "#", "*", "=", "\u02c8", "\u02cc", "\u2192", "\u2193", "\u2191", " "]
     elif arg1 == "zh":
         config["data"]["text_cleaners"] = ["cjke_cleaners2"]
-        config["symbols"] = ["_", ",", ".", "!", "?", "-", "~", "\u2026", "N", "Q", "a", "b", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "s", "t", "u", "v", "w", "x", "y", "z", "\u0251", "\u00e6", "\u0283", "\u0291", "\u00e7", "\u026f", "\u026a", "\u0254", "\u025b", "\u0279", "\u00f0", "\u0259", "\u026b", "\u0265", "\u0278", "\u028a", "\u027e", "\u0292", "\u03b8", "\u03b2", "\u014b", "\u0266", "\u207c", "\u02b0", "`", "^", "#", "*", "=", "\u02c8", "\u02cc", "\u2192", "\u2193", "\u2191", " "]
 
     subdirs = [d for d in os.listdir('.') if os.path.isdir(d)]
     config["data"]["n_speakers"] = len(subdirs)
@@ -455,7 +465,7 @@ def vits_preprocess_code(arg1, arg2):
     if arg1 not in ["ko", "ja", "en", "zh"]:
         return
 
-    script_path = "../vits/preprocess.py"
+    script_path = "../vits2/preprocess.py"
 
     filelists_train = f'./{arg2}_train.txt'
     filelists_val = f'./{arg2}_val.txt'
@@ -566,10 +576,10 @@ def main():
     rename_config_json(sys.argv[2])
     print("Successfully renamed config.json.\n")
 
-    print("Editing ../vits/symbols.py...")
+    print("Editing ../vits2/symbols.py...")
     time.sleep(1.5)
-    write_symbols("../vits/text/symbols.py", sys.argv[1])
-    print("Sucessfully edited ../vits/symbols.py.\n")
+    write_symbols("../vits2/text/symbols.py", sys.argv[1])
+    print("Sucessfully edited ../vits2/text/symbols.py.\n")
 
     print("Measuring Total Datasets Duration...")
     time.sleep(1.5)
