@@ -349,7 +349,7 @@ def create_config():
             "eval_interval": 1000,
             "seed": 1234,
             "epochs": 20000,
-            "learning_rate": 2e-4,  # 수정된 값
+            "learning_rate": 2e-4,
             "betas": [0.8, 0.99],
             "eps": 1e-09,
             "batch_size": 16,
