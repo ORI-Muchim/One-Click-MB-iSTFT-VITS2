@@ -82,7 +82,7 @@ Place the audio files as follows.
 .mp3 or .wav files are okay.
 
 ```
-One-Click-VITS-Training
+One-Click-MB-iSTFT-VITS2
 ├────datasets
 │       ├───speaker0
 │       │   ├────1.mp3
@@ -93,7 +93,7 @@ One-Click-VITS-Training
 │       ├integral.py
 │       └integral_low.py
 │
-├────vits
+├────vits2
 ├────inference.py
 ├────main_low.py
 ├────main_resume.py
@@ -114,7 +114,7 @@ To start this tool, use the following command, replacing {language}, {model_name
 python main.py {language} {model_name} {sample_rate}
 ```
 
-For those with low specifications(VRAM < 12GB), please use this code:
+For those with low specifications(VRAM <= 16GB), please use this code:
 
 ```sh
 python main_low.py {language} {model_name} {sample_rate}
