@@ -352,7 +352,7 @@ def create_config():
             "learning_rate": 2e-4,
             "betas": [0.8, 0.99],
             "eps": 1e-9,
-            "batch_size": 16,
+            "batch_size": 32,
             "fp16_run": False,
             "lr_decay": 0.999875,
             "segment_size": 8192,
@@ -367,11 +367,11 @@ def create_config():
         },
         "data": {
             "use_mel_posterior_encoder": True,
-            "training_files": "",
-            "validation_files": "",
-            "text_cleaners": [""],
+            "training_files":"filelists/ljs_audio_text_train_filelist.txt.cleaned",
+            "validation_files":"filelists/ljs_audio_text_val_filelist.txt.cleaned",
+            "text_cleaners":["japanese_cleaners2"],
             "max_wav_value": 32768.0,
-            "sampling_rate": 22050,
+            "sampling_rate": 44100,
             "filter_length": 1024,
             "hop_length": 256,
             "win_length": 1024,
@@ -404,11 +404,11 @@ def create_config():
             "kernel_size": 3,
             "p_dropout": 0.1,
             "resblock": "1",
-            "resblock_kernel_sizes": [3, 7, 11],
-            "resblock_dilation_sizes": [[1, 3, 5], [1, 3, 5], [1, 3, 5]],
-            "upsample_rates": [4, 4],
+            "resblock_kernel_sizes": [3,7,11],
+            "resblock_dilation_sizes": [[1,3,5], [1,3,5], [1,3,5]],
+            "upsample_rates": [4,4],
             "upsample_initial_channel": 512,
-            "upsample_kernel_sizes": [16, 16],
+            "upsample_kernel_sizes": [16,16],
             "n_layers_q": 3,
             "use_spectral_norm": False,
             "use_sdp": False,
@@ -418,6 +418,7 @@ def create_config():
 
     with open("config.json", "w", encoding="utf-8") as file:
         json.dump(config, file, ensure_ascii=False, indent=2)
+        
 
 def sixth_code(arg1, arg2):
     with open("config.json", "r", encoding="utf-8") as file:
