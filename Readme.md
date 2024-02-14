@@ -1,4 +1,4 @@
-- # One-Click-MB-iSTFT-VITS2-Training
+- # One-Click-MB-iSTFT-VITS2(WIP)
 
 This tool allows you to complete the entire process of MB-iSTFT-VITS2 (Data Preprocessing + Whisper ASR + Text Preprocessing + Modification config.json + Training, Inference) with ONE-CLICK!
 
