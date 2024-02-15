@@ -15,7 +15,7 @@ This tool allows you to complete the entire process of MB-iSTFT-VITS2 (Data Prep
 - [References](#references)
 
 ## Structure
-![Sample Output](./src/image.png)
+![Sample Output](./src/image2.png)
 
 ## Prerequisites
 - A Windows/Linux system with a minimum of `16GB` RAM.
