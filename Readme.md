@@ -15,7 +15,7 @@ This tool allows you to complete the entire process of MB-iSTFT-VITS2 (Data Prep
 - [References](#references)
 
 ## Structure
-![Sample Output](./src/One_Click_VITS_Training_Flowgraph.png)
+![Sample Output](./src/image.png)
 
 ## Prerequisites
 - A Windows/Linux system with a minimum of `16GB` RAM.
@@ -132,10 +132,10 @@ python main_resume.py {model_name}
 After the model has been trained, you can generate predictions by using the following command, replacing {model_name} and {model_step} with your respective values:
 
 ```sh
-python inference.py {model_name} {model_step} [--poly](Optional)
+python inference.py {model_name} {model_step} --poly(Optional)
 ```
 
-If you have selected cjke_cleaners2, put `--poly` option at the back.
+If you have selected cjke_cleaners2(en, zh), put `--poly` option at the back.
 
 
 If you want to change the example text used in the reference, modify `./vits/inference.py` `input` part.
