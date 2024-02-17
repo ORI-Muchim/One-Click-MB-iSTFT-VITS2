@@ -11,6 +11,7 @@ import torch.nn.functional as F
 
 from scipy.signal.windows import kaiser
 
+device = 'cpu'
 
 def design_prototype_filter(taps=62, cutoff_ratio=0.15, beta=9.0):
     """Design prototype filter for PQMF.
@@ -75,15 +76,15 @@ class PQMF(torch.nn.Module):
                 (-1) ** k * np.pi / 4)
 
         # convert to tensor
-        analysis_filter = torch.from_numpy(h_analysis).float().unsqueeze(1).cuda(device)
-        synthesis_filter = torch.from_numpy(h_synthesis).float().unsqueeze(0).cuda(device)
+        analysis_filter = torch.from_numpy(h_analysis).float().unsqueeze(1).to(device)
+        synthesis_filter = torch.from_numpy(h_synthesis).float().unsqueeze(0).to(device)
 
         # register coefficients as beffer
         self.register_buffer("analysis_filter", analysis_filter)
         self.register_buffer("synthesis_filter", synthesis_filter)
 
         # filter for downsampling & upsampling
-        updown_filter = torch.zeros((subbands, subbands, subbands)).float().cuda(device)
+        updown_filter = torch.zeros((subbands, subbands, subbands)).float().to(device)
         for k in range(subbands):
             updown_filter[k, k, 0] = 1.0
         self.register_buffer("updown_filter", updown_filter)
