@@ -104,7 +104,7 @@ pyaudio==0.2.13
 pycparser==2.21
 pydantic==1.10.7
 pydub==0.25.1
-Pygments==2.14.0
+Pygments>=2.15.0
 pylatexenc==2.10
 pyopenjtalk==0.2.0
 pyparsing==3.0.9
@@ -125,7 +125,7 @@ rsa==4.9
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.7
 scikit-learn==1.0.1
-scipy==1.6.0
+scipy>=1.10.0
 segments==2.2.1
 selenium==4.9.1
 simplejson==3.16.0
@@ -156,10 +156,10 @@ typing_extensions==4.6.2
 undetected-chromedriver==3.4.7
 Unidecode==1.1.1
 uritemplate==4.1.1
-urllib3==2.0.2
+urllib3>=2.0.7
 wcwidth==0.2.6
 websockets==11.0.3
-Werkzeug==2.2.3
+werkzeug>=2.3.8
 wincertstore==0.2
 wsproto==1.2.0
 yarl==1.9.2
