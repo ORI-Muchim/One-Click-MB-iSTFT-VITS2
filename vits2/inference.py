@@ -101,7 +101,7 @@ stn_tst = get_text(fltstr, hps)
 speed = 1
 
 for idx, speaker in enumerate(speakers):
-    sid = torch.LongTensor([idx]).cuda()
+    sid = torch.LongTensor([idx]).to(device)
     with torch.no_grad():
         x_tst = stn_tst.to(device).unsqueeze(0)
         x_tst_lengths = torch.LongTensor([stn_tst.size(0)]).to(device)
